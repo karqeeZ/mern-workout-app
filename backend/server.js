@@ -3,8 +3,12 @@ import express from 'express';
 import mongoose from 'mongoose';
 import workoutRoutes from './routes/workouts.js'; // Ensure to include the .js extension
 
+//Require cors
+const cors = require("cors");
+
 // Express app
 const app = express();
+
 
 // Middleware
 app.use(express.json());
@@ -13,6 +17,8 @@ app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
 });
+
+app.use(cors());
 
 // Routes
 app.use('/api/workouts', workoutRoutes);
